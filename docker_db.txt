@@ -1,2 +1,0 @@
-#postgres db 접속 명령어
-docker-compose exec db psql postgres postgres
