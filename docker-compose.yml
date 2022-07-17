@@ -1,21 +1,46 @@
+#파일 포맷 버전
 version: "3"
 
+#컨테이너 목록
 services:
+  #django web 정의
   web:
+    #docker build 경로
     build: .
+    #실행 명령어
     command: >
       bash -c "
       python manage.py migrate
       && python manage.py runserver 0:8000
-      "    
+      "
+    #호스트os 포트를 컨테이너 포트로 바인딩      
     ports:
       - "8000:8000"
+    #현재 디렉토리를 컨테이너내의 /web에 mount  
     volumes:
       - .:/web
+    #db 서비스 먼저 실행  
     depends_on:
       - db
+  #postgres 정의    
   db:
     image: postgres
+    #환경 변수 설정
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+  #nginx 정의
+  nginx:
+    #nginx 기본 이미지
+    image: nginx
+    #컨테이너명
+    container_name : nginx_service
+    #nginx 설정파일 mount
+    volumes:
+      - ./leffe.conf:/etc/nginx/conf.d/leffe.conf
+    #nginx 기본 포트  
+    ports:
+      - "80:80"
+    #web서비스 먼저 실행  
+    depends_on:
+      - web
