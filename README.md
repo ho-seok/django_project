@@ -32,6 +32,3 @@ ex) pip install requests
 로컬에서 라이브러리(패키지)를 설치하게 되면 freeze 명령어로
 방금 받은 라이브러리를 requirements.txt 에 기록 해야 한다.
 ex) pip freeze > requirements.txt
-
-3. 개발 환경
-python:3.8.6
