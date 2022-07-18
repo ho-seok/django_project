@@ -5,6 +5,7 @@ version: "3"
 services:
   #django web 정의
   web:
+    container_name : django_web
     #docker build 경로
     build: .
     #실행 명령어
@@ -25,6 +26,7 @@ services:
   #postgres 정의    
   db:
     image: postgres
+    container_name : postgres_db
     #환경 변수 설정
     environment:
       - POSTGRES_USER=postgres
