@@ -26,6 +26,8 @@ docker-compose start
 docker-compose stop
 docker-compose restart
 
-#postgres db 접속 명령어
-docker-compose exec db psql postgres postgres
-
+#컨테이너 접속 방법
+#컨테이너 ID확인
+docker ps
+#컨테이너 접속
+docker exec -it 컨테이너 ID /bin/bash 

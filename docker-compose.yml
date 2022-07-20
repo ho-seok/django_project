@@ -5,6 +5,7 @@ version: "3"
 services:
   #django web 정의
   web:
+    #컨테이너 명
     container_name : django_web
     #docker build 경로
     build: .
@@ -12,6 +13,8 @@ services:
     command: >
       bash -c "
       python manage.py migrate
+      && python manage.py makemigrations django_app
+      && python manage.py migrate django_app
       && python manage.py runserver 0:8000
       "
     #호스트os 포트를 컨테이너 포트로 바인딩      
@@ -26,6 +29,7 @@ services:
   #postgres 정의    
   db:
     image: postgres
+    #컨테이너 명
     container_name : postgres_db
     #환경 변수 설정
     environment:
@@ -39,10 +43,13 @@ services:
     container_name : nginx_service
     #nginx 설정파일 mount
     volumes:
-      - ./leffe.conf:/etc/nginx/conf.d/leffe.conf
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
     #nginx 기본 포트  
     ports:
       - "80:80"
     #web서비스 먼저 실행  
     depends_on:
       - web
+    #/etc/hosts 설정
+    # extra_hosts:
+    #   - "도메인:IP"
