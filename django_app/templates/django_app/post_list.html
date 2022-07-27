@@ -1,6 +1,24 @@
-<h1>Post List</h1>
+<h1>Blog list</h1>
 
-{% for blog in blog_list %}
+<!-- {% for blog in blog_list %}
     <h2>{{ blog.title }}</h2>
     {{ blog.content}}
+{% endfor %} -->
+
+{% for blog in blog_list %}
+<table border="1">
+    <th>제목</th>
+    <th>내용</th>
+    <th>이미지</th>
+    <th>생성날짜</th>
+    <th>수정날짜</th>
+    <tr>
+        <td>{{ blog.title}}</td>
+        <td>{{ blog.content}}</td>
+        <td>{{ blog.photo_tag }}</td>
+        <td>{{ blog.created_at}}</td>
+        <td>{{ blog.updated_at }}</td>
+    </tr>
+    <br>
+</table>
 {% endfor %}

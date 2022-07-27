@@ -20,7 +20,7 @@ class Blog(models.Model):
 
     #upload_to는 root경로인 media 폴더 하위에 이미지가 쌓일 경로를 지정할 수 있다.
     #이미지가 많을수록 각 폴더별로 관리를 해야 이미지를 가져올때 속도가 빠르기 때문
-    photo = models.ImageField(blank=True,upload_to='django_app/windows/%Y/%m/%d')
+    photo = models.ImageField(blank=True,upload_to='django_images/windows/%Y/%m/%d')
 
 
     def __str__(self):
