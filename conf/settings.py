@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+#베이스 경로는 setting.py 파일이 위치한 ../../ 상위 경로이다.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -128,6 +130,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#media URL 경로 지정
+MEDIA_URL = '/media/'
+
+#media 폴더 경로 지정
+MEDIA_ROOT = Path(BASE_DIR,'media')
+
+# MEDIA_ROOT = os.path.join(BASE_DIR,'..','public','media')
+#STATIC_ROOT = ''
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
